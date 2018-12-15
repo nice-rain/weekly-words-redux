@@ -1,0 +1,47 @@
+header
+{
+    background-color:dodgerblue;
+    height:15%;
+    text-align:center;
+}
+
+
+h1{
+    margin:0;
+    padding-top:7%;
+    text-align:center;
+    display:inline-block;
+    color:white;
+}
+
+.nav-button
+{
+    position:absolute;
+    top:6%;
+    right:6%;
+    display:inline;
+    border: 1px solid black;
+    border-radius:0.2em;
+    font-size:1em;
+}
+
+
+/*=======================================================
+// Desktop Style
+//=======================================================*/
+
+@media only screen and (min-width: 768px) {
+    
+    /* Fix our nav button for full-screen apps */
+    .nav-button{
+        position:relative;
+        top:-30px;
+        right:-250px;
+    }
+
+    /* Display block looks much better on desktop */
+    h1{
+        display: block;
+    }
+
+  }
