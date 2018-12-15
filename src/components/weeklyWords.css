@@ -1,0 +1,57 @@
+
+/*=======================================================
+// Mobile Style
+//=======================================================*/
+
+header
+{
+    background-color:dodgerblue;
+    height:15%;
+}
+
+main
+{
+    height:80%;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+footer{
+    background-color:olivedrab;
+    text-align:center;
+    height:5%;
+    padding-top:1.5%;
+}
+
+h1{
+    margin:0;
+    padding-top:7%;
+    text-align:center;
+}
+
+/*main class container*/
+.Container
+{
+    background-color:#eee;
+    margin:0;
+    height:100vh;
+}
+
+
+/*=======================================================
+// Desktop Style
+//=======================================================*/
+
+@media only screen and (min-width: 768px) {
+    .Container
+    {
+        margin:0 auto;
+        margin-top:60px;
+        width:650px;
+        height:800px;
+        border:1px solid black;
+        border-radius:1em;
+        overflow:hidden;
+    }
+
+  }
