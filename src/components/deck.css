@@ -1,0 +1,38 @@
+.deck-link
+{
+    width:100%;
+    height:80px;
+    background-color:#eee;
+    border:none;
+    border-bottom:1px solid #777;
+    font-weight:bold;
+    font-size:1em;
+}
+
+.deck-stats
+{
+    border-bottom:1px solid #777;
+    text-align:center;
+    padding-bottom:15px;
+}
+
+.deck-stats ul{
+    text-align:left;
+}
+
+.deck-stats li{
+    list-style:none;
+    font-size:0.8em;
+}
+
+.deck-button-start
+{
+    background-color:green;
+    border:1px solid darkgreen;
+    border-radius: 0.5em;
+    padding:10px;
+    width:200px;
+    font-weight:bold;
+    color:white;
+    font-size:15px;
+}

@@ -1,3 +1,4 @@
+/* Layout/container for Weekly Words application */
 import React, { Component } from 'react';
 import './weeklyWords.css';
 
