@@ -38,7 +38,13 @@ const initialState = {
     title: 'Weekly Words',
     navText:'logout',
     showNav: true,
-    page: 'decks'
+    page: 'decks',
+    review: {
+        deckIndex: '0',
+        shuffledCardIndices: [3,4,5,6,1],
+        startTime: 0,
+        cardCounter: 0
+    }
 };
 
 export const weeklyWordsReducer = (state = initialState, action) =>{
@@ -55,9 +61,12 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             }
             return deck;
         });
+        return Object.assign({}, state, {decks}); 
+    }
 
-        return Object.assign({}, state, {decks});
-        
+    else if(action.type === actions.START_REVIEW)
+    {
+        console.log('action = startReview');
     }
 
     //Default

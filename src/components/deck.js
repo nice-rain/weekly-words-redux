@@ -3,7 +3,7 @@
 import React from 'react';
 import './deck.css';
 import {connect} from 'react-redux';
-import { showHideDeckInfo } from '../actions';
+import { showHideDeckInfo, startReview } from '../actions';
 
 export function Deck(props)
 {
@@ -11,6 +11,12 @@ export function Deck(props)
     {
         //console.log(`showHideDeckInfo ${props.index}`);
         props.dispatch(showHideDeckInfo(props.index));
+    }
+
+    function beginReview()
+    {
+        //console.log('start review clicked');
+        props.dispatch(startReview(props.index));
     }
 
     return(
@@ -26,7 +32,7 @@ export function Deck(props)
                     <li><strong>Highest Accuracy:</strong> {props.deckHighestAccuracy}</li>
                     <li><strong>Fastest Review Time:</strong> {props.deckFastestTime}</li>
                 </ul>
-                <button className="deck-button-start">Start Review</button> 
+                <button className="deck-button-start" onClick={()=>beginReview()}>Start Review</button> 
             </div>}
         </div>
     );
