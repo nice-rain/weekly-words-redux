@@ -18,9 +18,13 @@ h1{
 .nav-button
 {
     position:absolute;
-    top:6%;
-    right:6%;
-    display:inline;
+    color:black;
+    padding:0;
+    width:60px;
+    height:30px;
+    top:5%;
+    right:5%;
+    /* display:inline; */
     border: 1px solid black;
     border-radius:0.2em;
     font-size:1em;
@@ -36,7 +40,7 @@ h1{
     /* Fix our nav button for full-screen apps */
     .nav-button{
         position:relative;
-        top:-30px;
+        top:-35px;
         right:-250px;
     }
 

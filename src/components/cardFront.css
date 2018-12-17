@@ -1,0 +1,18 @@
+.card-front
+{
+    text-align:center;
+}
+
+.card-front h2
+{
+    margin-top:190px;
+    font-size: 3em;
+}
+
+.cardfront-button-flip
+{
+    margin-top:80px;
+
+    background-color:dodgerblue;
+    border:1px solid darkblue;
+}

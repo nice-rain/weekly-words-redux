@@ -12,3 +12,11 @@ export const startReview = index => ({
     type: START_REVIEW,
     index
 });
+
+//Called when we click the 'flip button on the card front
+//Card index is the index of the card in the review
+export const FLIP_CARD = 'FLIP_CARD';
+export const flipCard = cardIndex => ({
+    type: FLIP_CARD,
+    cardIndex
+});

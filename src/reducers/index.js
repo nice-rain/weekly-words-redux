@@ -35,13 +35,13 @@ const initialState = {
         displayInfo: false,
         cards: []
     }],
-    title: 'Weekly Words',
+    title: 'Decks',
     navText:'logout',
     showNav: true,
     page: 'decks',
     review: {
         deckIndex: '0',
-        shuffledCardIndices: [3,4,5,6,1],
+        shuffledCardIndices: [3,4,1,2,0],
         startTime: 0,
         cardCounter: 0
     }
@@ -67,6 +67,21 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     else if(action.type === actions.START_REVIEW)
     {
         console.log('action = startReview');
+        return Object.assign({}, state, {
+            page:'cardFront',
+            title:'Front',
+            navText:'End'
+        });
+    }
+
+    else if(action.type === actions.FLIP_CARD)
+    {
+        console.log('action = flipCard');
+        return Object.assign({}, state, {
+            page: 'cardBack',
+            title:'Back',
+            navText:'End'
+        });
     }
 
     //Default

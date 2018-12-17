@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 
 //Imports regarding main content
 import DeckList from './deckList';
+import CardFront from './cardFront';
+import CardBack from './cardBack';
 
 //We use the page prop in order to change the content.
 //This will not work with the back button, but we are
@@ -15,8 +17,9 @@ export function MainContent(props)
 {
     return(
         <main role="main">
-            {props.page === 'deck' && <DeckList />}
-            <DeckList/>
+            {props.page === 'decks' && <DeckList />}
+            {props.page === 'cardFront' && <CardFront />}
+            {props.page === 'cardBack' && <CardBack />}
         </main>
     );
 };

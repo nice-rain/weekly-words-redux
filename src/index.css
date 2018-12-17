@@ -9,6 +9,14 @@ body {
   background-color:#222;
 }
 
+button{
+  border-radius: 0.5em;
+  padding:10px;
+  width:200px;
+  font-weight:bold;
+  font-size:15px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

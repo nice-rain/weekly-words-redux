@@ -1,0 +1,59 @@
+.card-back
+{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.card-back h2
+{
+    text-align:center;
+    font-size:2em;
+    margin-bottom:50px;
+}
+
+.cardback-pos{
+    margin-top:2px;
+    text-align:center;
+    font-size:1.2em;
+}
+
+.cardback-usage
+{
+    font-style:italic;
+    padding-left:20px;
+    padding-right:8px;
+    font-size:0.9em;
+    color:#555;
+}
+
+.card-back button{
+    margin:10px;
+    width:120px;
+}
+
+.cardback-button-right
+{
+    background-color:rgb(24, 175, 31);
+    border:1px solid darkgreen;
+}
+
+.cardback-button-wrong
+{
+    background-color:rgb(255, 30, 30);
+    border:1px solid darkred;
+}
+
+.cardback-button-container
+{
+    margin-top:20%;
+    text-align:center;
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .card-back
+    {
+        padding-left:50px;
+        padding-right:50px;
+    }
+  }
