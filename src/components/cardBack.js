@@ -6,7 +6,9 @@ import {connect} from 'react-redux';
 
 export function cardBack(props)
 {
-    const definitions = props.results.map((result, index) =>{
+    const currentCard = props.currentDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]];
+
+    const definitions = currentCard.results.map((result, index) =>{
         return (
             <div key={index}>
                 <p>{index + 1}. (<strong>{result.partOfSpeech}</strong>) {result.definition}</p>
@@ -17,7 +19,7 @@ export function cardBack(props)
 
     return(
         <section className="card-back">
-            <h2>{props.word}</h2>
+            <h2>{currentCard.word}</h2>
             {definitions}
             <div className="cardback-button-container">
                 <button className="cardback-button-right">Check</button>
@@ -43,4 +45,9 @@ cardBack.defaultProps = {
     ]
 }
 
-export default connect()(cardBack);
+const mapStateToProps = state => ({
+    review: state.review,
+    currentDeck: state.decks[state.review.deckIndex]
+});
+
+export default connect(mapStateToProps)(cardBack);
