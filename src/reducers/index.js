@@ -11,7 +11,66 @@ const initialState = {
         deckFastestTime: 60,
         deckAverageTime: 100,
         displayInfo:false,
-        cards: []
+        cards: [{
+            word:'example',
+            results: [
+            {
+                partOfSpeech: 'noun',
+                definition: 'a thing characteristic of its kind or illustrating a general rule.',
+                usage: `it's a good example of how European action can produce results`
+            },
+            {
+                partOfSpeech: 'noun',
+                definition: 'a representative form or pattern',
+                usage: `I profited from his example`
+            }]
+        },
+        {
+            word:'test',
+            results: [
+            {
+                partOfSpeech: 'noun',
+                definition: 'trying something to find out about it.',
+                usage: ``
+            },
+            {
+                partOfSpeech: 'verb',
+                definition: `examine someone's knowledge of something`,
+                usage: `The teacher tests us every week`
+            }]
+        },
+        {
+            word:'metrology',
+            results: [
+            {
+                partOfSpeech: 'noun',
+                definition: 'the scientific study of measurement',
+                usage: ``
+            }]
+        },
+        {
+            word:'epitome',
+            results: [
+            {
+                partOfSpeech: 'noun',
+                definition: 'a standard or typical example',
+                usage: ``
+            },
+            {
+                partOfSpeech: 'noun',
+                definition: `a brief abstract (as of an article or book)`,
+                usage: ``
+            }]
+        },
+        {
+            word:'slumgullion',
+            results: [
+            {
+                partOfSpeech: 'noun',
+                definition: 'a thin stew of meat and vegetables',
+                usage: ``
+            }]
+        }]
     }, 
         
     {
@@ -40,12 +99,70 @@ const initialState = {
     showNav: true,
     page: 'decks',
     review: {
-        deckIndex: '0',
+        deckIndex: 0, //Index of deck being reviewed
         shuffledCardIndices: [3,4,1,2,0],
-        startTime: 0,
-        cardCounter: 0
+        startTime: 0, //Time we began review
+        cardCounter: 0, //Total number of times we've clicked flip
+        currentCard: 0 //Index of current card within deck
     }
 };
+
+/**
+ * Returns a random number within the given range
+ * @param {number} min Minimum number in range
+ * @param {number} max Maximum number in range
+ */
+function randRange(min, max)
+{
+    //console.log(`Minimum is: ${min}`);
+    console.log(`Maximum is ${max}`)
+
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+/**
+ * Function randomizes the indices within our deck for review
+ * @param {state} state State passed from reducer (immutable)
+ * @param {Number} deckIndex Index of deck that we are reviewing.
+ * @return {Array} returns array of indices to review.
+ */
+function shuffleDeck(state, deckIndex)
+{
+    const numCards = state.decks[deckIndex].cards.length;
+
+    //Store all empty keys in our shuffledCard array
+    const tempIndices = [...Array(numCards).keys()];
+    
+    //Array containing shuffled card indices
+    const shuffledIndices = [];
+
+    //Log our temporary indices (before shuffling)
+    console.log(tempIndices);
+
+    //loop through each card index
+    for (let i = 0; i < numCards; i++)
+    {
+        //get a random number from 0 to our final index
+        let randomIndex = randRange(0, tempIndices.length);
+        // console.log(`Index in temporary array is ${randomIndex}`);
+        // console.log(`This gives us a shuffled index value of ${tempIndices[randomIndex]}`)
+
+        //Add it to our shuffled indices
+        shuffledIndices[tempIndices[randomIndex]] = i;
+
+        //Remove the random index from the tempIndices array (and resize it)
+        tempIndices.splice(randomIndex, 1);
+
+        //log after splice
+        console.log(tempIndices);
+    }
+
+    //Log our shuffled indices
+    console.log(shuffledIndices);
+
+    //Return our shuffled indices to our reducer
+    return shuffledIndices;
+}
 
 export const weeklyWordsReducer = (state = initialState, action) =>{
 
@@ -70,7 +187,14 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         return Object.assign({}, state, {
             page:'cardFront',
             title:'Front',
-            navText:'End'
+            navText:'End',
+            review:{
+                shuffledCardIndices: shuffleDeck(state, action.index),
+                startTime: Date.now(),
+                deckIndex: action.index,
+                cardCounter:0,
+                currentCard:0
+            }
         });
     }
 

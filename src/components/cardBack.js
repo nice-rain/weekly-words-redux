@@ -8,7 +8,7 @@ export function cardBack(props)
 {
     const definitions = props.results.map((result, index) =>{
         return (
-            <div>
+            <div key={index}>
                 <p>{index + 1}. (<strong>{result.partOfSpeech}</strong>) {result.definition}</p>
                 <p className ="cardback-usage">{result.usage}</p>
             </div>
