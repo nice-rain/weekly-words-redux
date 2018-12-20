@@ -2,11 +2,26 @@
 import React from 'react';
 import './cardBack.css';
 import {connect} from 'react-redux';
+import {rightAnswer, wrongAnswer} from '../actions';
 
 
 export function cardBack(props)
 {
+    //Store our current card
     const currentCard = props.currentDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]];
+
+    //Callback to fire our dispatch when our answer is right
+    function clickedRight()
+    {
+        //console.log(`showHideDeckInfo ${props.index}`);
+        props.dispatch(rightAnswer());
+    }
+
+    function clickedWrong()
+    {
+        props.dispatch(wrongAnswer());
+    }
+
 
     const definitions = currentCard.results.map((result, index) =>{
         return (
@@ -22,8 +37,8 @@ export function cardBack(props)
             <h2>{currentCard.word}</h2>
             {definitions}
             <div className="cardback-button-container">
-                <button className="cardback-button-right">Check</button>
-                <button className="cardback-button-wrong">X</button>
+                <button className="cardback-button-right" onClick={()=>clickedRight()}>Check</button>
+                <button className="cardback-button-wrong" onClick={()=>clickedWrong()}>X</button>
             </div>
         </section>
     );

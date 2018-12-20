@@ -97,13 +97,14 @@ const initialState = {
     title: 'Decks',
     navText:'logout',
     showNav: true,
-    page: 'decks',
+    page: 'results',
     review: {
         deckIndex: 0, //Index of deck being reviewed
         shuffledCardIndices: [3,4,1,2,0],
         startTime: 0, //Time we began review
         cardCounter: 0, //Total number of times we've clicked flip
-        currentCard: 0 //Index of current card within deck
+        currentCard: 0, //Index of current card within deck
+        endTime:0
     }
 };
 
@@ -193,7 +194,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
                 startTime: Date.now(),
                 deckIndex: action.index,
                 cardCounter:0,
-                currentCard:0
+                currentCard:0,
+                endTime:0
             }
         });
     }
@@ -205,6 +207,81 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page: 'cardBack',
             title:'Back',
             navText:'End'
+        });
+    }
+
+    else if(action.type === actions.RIGHT_ANSWER)
+    {
+        console.log('action = rightAnswer');
+        
+        //We will need to start by removing our current index from the shuffledIndices array
+        const shuffledCards = [...state.review.shuffledCardIndices.slice(0, state.review.currentCard),
+            ...state.review.shuffledCardIndices.slice(state.review.currentCard + 1)];
+
+        const nextPage = {};
+
+        //Determine if we keep or change the index 
+        //(should restart from front card once we miss a few)
+        let newCardIndex = state.review.currentCard;
+        if(newCardIndex >= shuffledCards.length)
+        {
+            newCardIndex = 0;
+        }
+
+        //Now we need to determine if we flip to the front or if we show results
+        //If we have no cards left, show results
+        if(shuffledCards.length <= 0)
+        {
+            nextPage.page = 'decks';
+            nextPage.title = 'results';
+            nextPage.navText = 'Done';
+        }
+        else{
+            nextPage.page = 'cardFront';
+            nextPage.title = 'Front';
+            nextPage.navText = 'End';
+        }
+
+        //We need to refactor this to ONLY update what's needed
+        //We should not be forced to udpate the entire review object.
+        return Object.assign({}, state,{
+            page: nextPage.page,
+            title: nextPage.title,
+            navText: nextPage.navText,
+            review: {...state.review, 
+                cardCounter: state.review.cardCounter + 1, 
+                currentCard: newCardIndex, 
+                shuffledCardIndices: shuffledCards
+            }
+        });
+    }
+
+    else if (action.type === actions.WRONG_ANSWER)
+    {
+        console.log('action = wrongAnswer');
+        
+        //Move our index 1
+        let newCardIndex = state.review.currentCard + 1;
+        if(newCardIndex >= state.review.shuffledCardIndices.length)
+        {
+            //If we go out of bounds, set our index back to 0
+            newCardIndex = 0;
+        }
+
+        const nextPage = {
+            page: 'cardFront',
+            title: 'Front',
+            navText: 'End'
+        };
+
+        return Object.assign({}, state, {
+            page: nextPage.page,
+            title: nextPage.title,
+            navText: nextPage.navText,
+            review: {...state.review, 
+                cardCounter: state.review.cardCounter + 1, 
+                currentCard: newCardIndex, 
+            }
         });
     }
 

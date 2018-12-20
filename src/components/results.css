@@ -1,0 +1,49 @@
+.results-container
+{
+    padding-left:20px;
+    padding-right:20px;
+    text-align:center;
+}
+
+.results-container h2
+{
+    font-size:2em;
+    margin-bottom:50px;
+}
+
+.results-container button{
+    margin:10px;
+    width:120px;
+    color:black;
+}
+
+.results-container p{
+    font-size:1.2em;
+}
+
+.results-button-again
+{
+    background-color:dodgerblue;
+    border:1px solid darkblue;
+}
+
+.results-button-home
+{
+    background-color:rgb(24, 175, 31);
+    border:1px solid darkgreen;
+}
+
+.results-button-container
+{
+    margin-top:20%;
+    text-align:center;
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .results-container
+    {
+        padding-left:50px;
+        padding-right:50px;
+    }
+}

@@ -20,3 +20,11 @@ export const flipCard = cardIndex => ({
     type: FLIP_CARD,
     cardIndex
 });
+
+//Called when we click the check (correct) button on card back
+export const RIGHT_ANSWER = 'RIGHT_ANSWER';
+export const rightAnswer = ()=>({type: RIGHT_ANSWER});
+
+//Called when we click the x (incorrect) button on the card back
+export const WRONG_ANSWER = 'WRONG_ANSWER';
+export const wrongAnswer = ()=> ({type: WRONG_ANSWER});
