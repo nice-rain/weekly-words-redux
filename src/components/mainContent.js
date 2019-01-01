@@ -10,6 +10,7 @@ import DeckList from './deckList';
 import CardFront from './cardFront';
 import CardBack from './cardBack';
 import Results from './results';
+import Login from './login';
 
 //We use the page prop in order to change the content.
 //This will not work with the back button, but we are
@@ -22,6 +23,7 @@ export function MainContent(props)
             {props.page === 'cardFront' && <CardFront />}
             {props.page === 'cardBack' && <CardBack />}
             {props.page === 'results' && <Results />}
+            {props.page === 'login' && <Login/>}
         </main>
     );
 };
