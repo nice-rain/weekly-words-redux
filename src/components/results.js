@@ -52,7 +52,7 @@ export function Results(props)
             return `Accuracy Invalid`;
         }
 
-        return `${(props.currentDeck.cards.length /props.review.cardCounter  * 100).toFixed(2)}%`;
+        return `${(props.currentDeck.generatedDeck.cards.length /props.review.cardCounter  * 100).toFixed(2)}%`;
     }
 
     return(

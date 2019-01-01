@@ -2,20 +2,21 @@
 import React from 'react';
 import './login.css';
 import {reduxForm, Field} from 'redux-form';
-//import {doLogin} from '../actions';
+import {doLogin} from '../actions';
 
 export function Login(props)
 {
     function onSubmit(values) {
-        console.log(values);
+        //set login button inactive
+        props.dispatch(doLogin(values));
     }
 
     return (
         <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
-            <label htmlFor="name">Username</label>
-            <Field name="name" id="name" type="text" component="input" />
-            <label htmlFor="email">Password</label>
-            <Field name="email" id="email" type="email" component="input" />
+            <label htmlFor="username">Username</label>
+            <Field name="username" id="username" type="text" component="input" required />
+            <label htmlFor="password">Password</label>
+            <Field name="password" id="password" type="password" component="input" required/>
             <button type="submit">Login</button>
         </form>
     );

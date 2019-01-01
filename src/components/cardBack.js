@@ -8,7 +8,7 @@ import {rightAnswer, wrongAnswer} from '../actions';
 export function cardBack(props)
 {
     //Store our current card
-    const currentCard = props.currentDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]];
+    const currentCard = props.currentDeck.generatedDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]];
 
     //Callback to fire our dispatch when our answer is right
     function clickedRight()
@@ -22,20 +22,13 @@ export function cardBack(props)
         props.dispatch(wrongAnswer());
     }
 
-
-    const definitions = currentCard.results.map((result, index) =>{
-        return (
-            <div key={index}>
-                <p>{index + 1}. (<strong>{result.partOfSpeech}</strong>) {result.definition}</p>
-                <p className ="cardback-usage">{result.usage}</p>
-            </div>
-        );
-    });
-
     return(
         <section className="card-back">
             <h2>{currentCard.word}</h2>
-            {definitions}
+            <div>
+            <p>(<strong>{currentCard.partOfSpeech}</strong>) {currentCard.definition}</p>
+                <p className ="cardback-usage">{currentCard.usage}</p>
+            </div>
             <div className="cardback-button-container">
                 <button className="cardback-button-right" onClick={()=>clickedRight()}>Check</button>
                 <button className="cardback-button-wrong" onClick={()=>clickedWrong()}>X</button>

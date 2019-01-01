@@ -10,7 +10,7 @@ const initialState = {
         deckAverageAccuracy: 5,
         deckFastestTime: 60,
         deckAverageTime: 100,
-        displayInfo:false,
+        displayInfo:false, //needs to be added to each deck in our store
         cards: [{
             word:'example',
             results: [
@@ -129,7 +129,7 @@ function randRange(min, max)
  */
 function shuffleDeck(state, deckIndex)
 {
-    const numCards = state.decks[deckIndex].cards.length;
+    const numCards = state.decks[deckIndex].generatedDeck.cards.length;
 
     //Store all empty keys in our shuffledCard array
     const tempIndices = [...Array(numCards).keys()];
@@ -286,13 +286,23 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         });
     }
 
-    else if (action.type === actions.RETURN_HOME)
+    //Bring us to our decks page if we return home or login
+    else if (action.type === actions.RETURN_HOME || action.type === actions.LOGIN_SUCCESS)
     {
         console.log('action = returnHome');
         return Object.assign({}, state, {
             page: 'decks',
             title:'Decks',
             navText: 'logout'
+        });
+    }
+
+    else if (action.type === actions.GET_DECKS_SUCCESS)
+    {
+        console.log('action=getDecksSuccess');
+        console.log(action.decks);
+        return Object.assign({}, state, {
+            decks: action.decks
         });
     }
 

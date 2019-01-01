@@ -15,7 +15,7 @@ export function cardFront(props)
     }
 
     //Word that we are displaying on this card - Need to refactor for readability ^^'
-    const word = props.currentDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]].word;
+    const word = props.currentDeck.generatedDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]].word;
 
     return(
         <section className ="card-front">
@@ -25,9 +25,6 @@ export function cardFront(props)
     );
 }
 
-// cardFront.defaultProps = {
-//     word:'Default Word'
-// }
 
 const mapStateToProps = state => ({
     review: state.weeklyWordsReducer.review,
