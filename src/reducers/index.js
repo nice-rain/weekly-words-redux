@@ -97,7 +97,7 @@ const initialState = {
     title: 'Decks',
     navText:'logout',
     showNav: true,
-    page: 'results',
+    page: 'decks',
     review: {
         deckIndex: 0, //Index of deck being reviewed
         shuffledCardIndices: [3,4,1,2,0],
@@ -232,8 +232,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         //If we have no cards left, show results
         if(shuffledCards.length <= 0)
         {
-            nextPage.page = 'decks';
-            nextPage.title = 'results';
+            nextPage.page = 'results';
+            nextPage.title = 'Results';
             nextPage.navText = 'Done';
         }
         else{
@@ -251,7 +251,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             review: {...state.review, 
                 cardCounter: state.review.cardCounter + 1, 
                 currentCard: newCardIndex, 
-                shuffledCardIndices: shuffledCards
+                shuffledCardIndices: shuffledCards,
+                endTime: Date.now()
             }
         });
     }
@@ -282,6 +283,16 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
                 cardCounter: state.review.cardCounter + 1, 
                 currentCard: newCardIndex, 
             }
+        });
+    }
+
+    else if (action.type === actions.RETURN_HOME)
+    {
+        console.log('action = returnHome');
+        return Object.assign({}, state, {
+            page: 'decks',
+            title:'Decks',
+            navText: 'logout'
         });
     }
 

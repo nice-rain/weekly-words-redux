@@ -22,7 +22,7 @@ export function Deck(props)
     return(
         <div>
             <button className="deck-link" onClick={()=> showHideInfo()}>{props.deckName}</button>
-            {/* Blow is used to display when displayInfo is set to true */}
+            {/* Below is used to display when displayInfo is set to true */}
             {props.displayInfo && <div className="deck-stats">
                 <ul>
                     <li><strong>Review Total:</strong> {props.deckReviewTotal}</li>

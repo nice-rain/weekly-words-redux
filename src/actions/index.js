@@ -28,3 +28,7 @@ export const rightAnswer = ()=>({type: RIGHT_ANSWER});
 //Called when we click the x (incorrect) button on the card back
 export const WRONG_ANSWER = 'WRONG_ANSWER';
 export const wrongAnswer = ()=> ({type: WRONG_ANSWER});
+
+//Called when we click the 'home' button on the results page
+export const RETURN_HOME = 'RETURN_HOME';
+export const returnHome = ()=>({type: RETURN_HOME});
