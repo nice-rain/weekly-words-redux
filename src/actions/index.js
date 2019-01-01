@@ -59,6 +59,16 @@ export const getDecksSuccess = (decks) => ({type: GET_DECKS_SUCCESS, decks});
 export const GET_DECKS_ERROR = 'GET_DECKS_ERROR';
 export const getDecksError = (err) => ({type: GET_DECKS_ERROR, err});
 
+
+export const PUT_DECKS_REQUEST = 'PUT_DECKS_REQUEST';
+export const putDecksRequest = () => ({type: PUT_DECKS_REQUEST});
+
+export const PUT_DECKS_SUCCESS = 'PUT_DECKS_SUCCESS';
+export const putDecksSuccess = () => ({type: PUT_DECKS_SUCCESS});
+
+export const PUT_DECKS_ERROR = 'PUT_DECKS_ERROR';
+export const putDecksError = (err) => ({type: PUT_DECKS_ERROR, err});
+
 //=======================================================
 // Redux Thunk Actions
 //=======================================================
@@ -144,3 +154,36 @@ export const getDecks = () => dispatch => {
         dispatch(getDecksError(err));
     });
 };
+
+export const putDeckStats = (stats) => dispatch =>
+{
+    
+    fetch(`${BASE_API_URL}/decks/${stats.id}`,
+    {
+        'headers':{
+            'content-type':'application/json',
+            'Authorization':`Bearer ${sessionStorage.getItem('authToken')}`
+        },
+        'body':JSON.stringify(stats),
+        'method':'PUT'
+    })
+    .then(res => {
+        if (!res.ok) {
+            console.log(res);
+            return Promise.reject(res);
+        }
+        return res.json();
+    })
+    .then(res => {
+        console.log('PUT Decks success');
+        //Notifies our application to switch to Decks page.
+        dispatch(putDecksSuccess());
+
+    })
+    .catch(err => {
+        console.log(err);
+        //Throw an error
+        dispatch(putDecksError(err));
+    });
+
+}

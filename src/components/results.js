@@ -1,30 +1,30 @@
 //Results page (shown once deck is reviewed)
-import React from 'react';
+import React, { Component } from 'react';
 import './results.css';
 import {connect} from 'react-redux';
-import {returnHome, startReview} from '../actions';
+import {returnHome, startReview, putDeckStats} from '../actions';
 
 
-export function Results(props)
+export class Results extends Component
 {
    
     //Callback to fire our dispatch when our answer is right
-    function clickedHome()
+    clickedHome()
     {
         //console.log(`showHideDeckInfo ${props.index}`);
-        props.dispatch(returnHome());
+        this.props.dispatch(returnHome());
     }
 
-    function clickedAgain()
+    clickedAgain()
     {
         //Just restart the review again
-        props.dispatch(startReview(props.deckIndex));
+        this.props.dispatch(startReview(this.props.deckIndex));
     }
 
     //Calculates our review time in human-readable format
-    function calculateElapsedTime()
+    calculateElapsedTime()
     {
-        const milliseconds = props.review.endTime - props.review.startTime;
+        const milliseconds = this.props.review.endTime - this.props.review.startTime;
         const seconds = (milliseconds /1000).toFixed(0);
 
         let time = "";
@@ -45,28 +45,55 @@ export function Results(props)
     }
 
     //Calculates our review accuracy
-    function calculateAccuracy()
+    calculateAccuracy()
     {
-        if(props.review.cardCounter === 0)
+        if(this.props.review.cardCounter === 0)
         {
             return `Accuracy Invalid`;
         }
 
-        return `${(props.currentDeck.generatedDeck.cards.length /props.review.cardCounter  * 100).toFixed(2)}%`;
+        return (this.props.currentDeck.generatedDeck.cards.length /this.props.review.cardCounter  * 100).toFixed(2);
     }
 
+    componentDidMount()
+    {
+        const oldAccuracy = this.props.currentDeck.deckHighestAccuracy;
+        const newAccuracy = this.calculateAccuracy();
+        const bestAccuracy = newAccuracy > oldAccuracy ? newAccuracy : oldAccuracy
+
+        const oldTime = this.props.currentDeck.deckFastestTime;
+
+        const milliseconds = this.props.review.endTime - this.props.review.startTime;
+        const seconds = (milliseconds /1000).toFixed(0);
+        const fastestTime = seconds < oldTime || oldTime === 0 ? seconds : oldTime;
+
+        const deckStats = {
+            id: this.props.currentDeck.id,
+            deckReviewTotal: this.props.currentDeck.deckReviewTotal + 1,
+            deckHighestAccuracy: bestAccuracy,
+            deckFastestTime: fastestTime
+        };
+
+        //
+
+        //We need to do a put request here to save our stats
+        this.props.dispatch(putDeckStats(deckStats));
+    }
+
+render(){
     return(
         <section className="results-container">
             <h2>Review Stats</h2>
-            <p><strong>Total Reviews:</strong> {props.currentDeck.deckReviewTotal}</p>
-            <p><strong>Review Accuracy:</strong> {calculateAccuracy()}</p>
-            <p><strong>Review Time:</strong> {calculateElapsedTime()}</p>
+            <p><strong>Total Reviews:</strong> {this.props.currentDeck.deckReviewTotal + 1}</p>
+            <p><strong>Review Accuracy:</strong> {this.calculateAccuracy()+'%'}</p>
+            <p><strong>Review Time:</strong> {this.calculateElapsedTime()}</p>
             <div className="results-button-container">
-                <button className="results-button-again"onClick={()=>clickedAgain()}>Again?</button>
-                <button className="results-button-home" onClick={()=>clickedHome()}>Home</button>
+                <button className="results-button-again"onClick={()=>this.clickedAgain()}>Again?</button>
+                <button className="results-button-home" onClick={()=>this.clickedHome()}>Home</button>
             </div>
         </section>
     );
+}
 }
 
 const mapStateToProps = state => ({
