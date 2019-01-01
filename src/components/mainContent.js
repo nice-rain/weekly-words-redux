@@ -29,7 +29,7 @@ export function MainContent(props)
 };
 
 const mapStateToProps = state => ({
-    page: state.page
+    page: state.weeklyWordsReducer.page
 });
 
 export default connect(mapStateToProps)(MainContent);

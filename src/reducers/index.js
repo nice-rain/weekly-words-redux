@@ -97,7 +97,7 @@ const initialState = {
     title: 'Decks',
     navText:'logout',
     showNav: true,
-    page: 'login',
+    page: 'decks',
     review: {
         deckIndex: 0, //Index of deck being reviewed
         shuffledCardIndices: [3,4,1,2,0],

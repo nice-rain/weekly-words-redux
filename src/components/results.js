@@ -70,9 +70,9 @@ export function Results(props)
 }
 
 const mapStateToProps = state => ({
-    deckIndex: state.review.deckIndex,
-    review: state.review,
-    currentDeck: state.decks[state.review.deckIndex]
+    deckIndex: state.weeklyWordsReducer.review.deckIndex,
+    review: state.weeklyWordsReducer.review,
+    currentDeck: state.weeklyWordsReducer.decks[state.weeklyWordsReducer.review.deckIndex]
 });
 
 export default connect(mapStateToProps)(Results);

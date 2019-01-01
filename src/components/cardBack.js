@@ -61,8 +61,8 @@ cardBack.defaultProps = {
 }
 
 const mapStateToProps = state => ({
-    review: state.review,
-    currentDeck: state.decks[state.review.deckIndex]
+    review: state.weeklyWordsReducer.review,
+    currentDeck: state.weeklyWordsReducer.decks[state.weeklyWordsReducer.review.deckIndex]
 });
 
 export default connect(mapStateToProps)(cardBack);

@@ -21,8 +21,8 @@ Header.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    title: state.title,
-    navText: state.navText
+    title: state.weeklyWordsReducer.title,
+    navText: state.weeklyWordsReducer.navText
 
 });
 

@@ -24,7 +24,7 @@
  };
 
 const mapStateToProps = state => ({
-    decks: state.decks
+    decks: state.weeklyWordsReducer.decks
 });
 
  export default connect(mapStateToProps)(DeckList);
