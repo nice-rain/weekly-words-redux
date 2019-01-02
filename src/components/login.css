@@ -20,14 +20,17 @@
     font-size:18px;
 }
 
+.login-form p{
+    text-align:center;
+}
 
-.login-form button{
+.login-button{
     background-color:dodgerblue;
     border:1px solid darkblue;
     width:100%;
     margin-top:20px;
 }
 
-.login-form button:hover{
+.login-button:hover{
     background-color:rgb(82, 169, 255);
 }

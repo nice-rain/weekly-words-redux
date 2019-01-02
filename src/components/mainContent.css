@@ -3,4 +3,5 @@ main
     height:77%;
     overflow-y:scroll;
     overflow-x:hidden;
+    position:relative;
 }

@@ -11,6 +11,11 @@ export function Login(props)
         props.dispatch(doLogin(values));
     }
 
+    function handleClick()
+    {
+        console.log('clicked register');
+    }
+
     return (
         <div className="login-form">
             <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
@@ -18,8 +23,9 @@ export function Login(props)
                 <Field name="username" id="username" type="text" component="input" required />
                 <label htmlFor="password">Password</label>
                 <Field name="password" id="password" type="password" component="input" required/>
-                <button type="submit">Login</button>
+                <button type="submit" className="login-button">Login</button>
             </form>
+            <p>Don't have an account? <button className="link-button" onClick={()=>handleClick()}>Register</button></p>
         </div>
     );
 }

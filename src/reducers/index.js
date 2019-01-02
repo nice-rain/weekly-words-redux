@@ -97,6 +97,7 @@ const initialState = {
     title: 'Weekly Words',
     navText:'logout',
     showNav: false,
+    loading:false,
     page: 'login',
     review: {
         deckIndex: 0, //Index of deck being reviewed
@@ -300,7 +301,24 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page: 'decks',
             title:'Decks',
             navText: 'logout',
-            showNav: true
+            showNav: true,
+            loading:false
+        });
+    }
+
+    else if(action.type === actions.LOGIN_REQUEST)
+    {
+        console.log('action = loginRequest');
+        return Object.assign({}, state, {
+            loading:true
+        });
+    }
+
+    else if(action.type === actions.LOGIN_ERROR)
+    {
+        console.log('action = loginRequest');
+        return Object.assign({}, state, {
+            loading:false
         });
     }
 
@@ -309,7 +327,31 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         console.log('action=getDecksSuccess');
         console.log(action.decks);
         return Object.assign({}, state, {
-            decks: action.decks
+            decks: action.decks,
+            loading:false
+        });
+    }
+
+    else if(action.type === actions.GET_DECKS_REQUEST)
+    {
+        console.log('action = getDecksRequest');
+        return Object.assign({}, state, {
+            loading:true
+        });
+    }
+
+    else if (action.type === actions.PUT_DECKS_REQUEST)
+    {
+        console.log('action = putDecksRequest');
+        return Object.assign({}, state, {
+            loading:true
+        });
+    }
+
+    else if(action.type === actions.PUT_DECKS_SUCCESS)
+    {
+        return Object.assign({}, state, {
+            loading:false
         });
     }
 

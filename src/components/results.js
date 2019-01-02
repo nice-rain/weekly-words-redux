@@ -76,7 +76,8 @@ export class Results extends Component
             deckLatestAccuracy: newAccuracy
         };
 
-        //
+        console.log('stats to submit');
+        console.log(deckStats);
 
         //We need to do a put request here to save our stats
         this.props.dispatch(putDeckStats(deckStats));

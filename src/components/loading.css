@@ -1,0 +1,19 @@
+.loading
+{
+    background-color:rgba(0, 0, 0, 0.6);
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:2;
+}
+
+.loading-spinner
+{
+    margin:0 auto;
+    margin-top:40%;
+    height:50px;
+    width:50px;
+    color:white;
+}

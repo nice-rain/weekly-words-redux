@@ -64,7 +64,7 @@ export const getDecksError = (err) => ({type: GET_DECKS_ERROR, err});
 
 //Use this to update stats before we call the put request.
 export const PUT_DECKS_REQUEST = 'PUT_DECKS_REQUEST';
-export const putDecksRequest = (stats) => ({type: PUT_DECKS_REQUEST, stats});
+export const putDecksRequest = () => ({type: PUT_DECKS_REQUEST});
 
 export const PUT_DECKS_SUCCESS = 'PUT_DECKS_SUCCESS';
 export const putDecksSuccess = () => ({type: PUT_DECKS_SUCCESS});
@@ -160,7 +160,11 @@ export const getDecks = () => dispatch => {
 
 export const putDeckStats = (stats) => dispatch =>
 {
-    dispatch(putDecksRequest(stats));
+    dispatch(putDecksRequest());
+
+    const request = JSON.stringify(stats);
+    console.log(request);
+
     fetch(`${BASE_API_URL}/decks/${stats.id}`,
     {
         'headers':{
@@ -175,7 +179,7 @@ export const putDeckStats = (stats) => dispatch =>
             console.log(res);
             return Promise.reject(res);
         }
-        return res.json();
+        return res;
     })
     .then(res => {
         console.log('PUT Decks success');
