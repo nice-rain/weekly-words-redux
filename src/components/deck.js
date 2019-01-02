@@ -26,8 +26,8 @@ export function Deck(props)
             {props.displayInfo && <div className="deck-stats">
                 <ul>
                     <li><strong>Review Total:</strong> {props.deckReviewTotal}</li>
-                    <li><strong>Average Accuracy:</strong> {props.deckAverageAccuracy}</li>
-                    <li><strong>Average Review Time:</strong> {props.deckAverageTime}</li>
+                    <li><strong>Latest Accuracy:</strong> {props.deckLatestAccuracy}</li>
+                    <li><strong>Latest Review Time:</strong> {props.deckLatestTime}</li>
                     <br />
                     <li><strong>Highest Accuracy:</strong> {props.deckHighestAccuracy}</li>
                     <li><strong>Fastest Review Time:</strong> {props.deckFastestTime}</li>
@@ -43,9 +43,9 @@ Deck.defaultProps = {
     deckName: 'Default Deck Name',
     deckReviewTotal: 5,
     deckHighestAccuracy: 85,
-    deckAverageAccuracy: 50,
+    deckLatestAccuracy: 50,
     deckFastestTime: 600, //time in seconds
-    deckAverageTime: 1000, //time in seconds
+    deckLatestTime: 1000, //time in seconds
     displayInfo: false //If true, show our information
 };
 

@@ -71,7 +71,9 @@ export class Results extends Component
             id: this.props.currentDeck.id,
             deckReviewTotal: this.props.currentDeck.deckReviewTotal + 1,
             deckHighestAccuracy: bestAccuracy,
-            deckFastestTime: fastestTime
+            deckFastestTime: fastestTime, 
+            deckLatestTime: seconds,
+            deckLatestAccuracy: newAccuracy
         };
 
         //

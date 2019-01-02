@@ -2,14 +2,20 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import {handleNav} from '../actions';
 import './header.css';
 
 export function Header(props)
 {
+    function handleClick()
+    {
+        props.dispatch(handleNav(props.navText));   
+    }
+
     return (
         <header className="App-header" role="banner">
           <h1>{props.title}</h1>
-          <button className="nav-button">{props.navText}</button>
+          {props.showNav && <button className="nav-button" onClick={()=>handleClick()}>{props.navText}</button>}
         </header>
     );
 };
@@ -22,7 +28,8 @@ Header.defaultProps = {
 
 const mapStateToProps = state => ({
     title: state.weeklyWordsReducer.title,
-    navText: state.weeklyWordsReducer.navText
+    navText: state.weeklyWordsReducer.navText,
+    showNav: state.weeklyWordsReducer.showNav
 
 });
 

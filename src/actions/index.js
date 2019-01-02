@@ -24,6 +24,9 @@ export const flipCard = cardIndex => ({
     cardIndex
 });
 
+export const HANDLE_NAV = 'HANDLE_NAV';
+export const handleNav = (navText) =>({type: HANDLE_NAV, navText}); 
+
 //Called when we click the check (correct) button on card back
 export const RIGHT_ANSWER = 'RIGHT_ANSWER';
 export const rightAnswer = ()=>({type: RIGHT_ANSWER});
@@ -59,9 +62,9 @@ export const getDecksSuccess = (decks) => ({type: GET_DECKS_SUCCESS, decks});
 export const GET_DECKS_ERROR = 'GET_DECKS_ERROR';
 export const getDecksError = (err) => ({type: GET_DECKS_ERROR, err});
 
-
+//Use this to update stats before we call the put request.
 export const PUT_DECKS_REQUEST = 'PUT_DECKS_REQUEST';
-export const putDecksRequest = () => ({type: PUT_DECKS_REQUEST});
+export const putDecksRequest = (stats) => ({type: PUT_DECKS_REQUEST, stats});
 
 export const PUT_DECKS_SUCCESS = 'PUT_DECKS_SUCCESS';
 export const putDecksSuccess = () => ({type: PUT_DECKS_SUCCESS});
@@ -157,7 +160,7 @@ export const getDecks = () => dispatch => {
 
 export const putDeckStats = (stats) => dispatch =>
 {
-    
+    dispatch(putDecksRequest(stats));
     fetch(`${BASE_API_URL}/decks/${stats.id}`,
     {
         'headers':{

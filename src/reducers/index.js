@@ -94,9 +94,9 @@ const initialState = {
         displayInfo: false,
         cards: []
     }],
-    title: 'Decks',
+    title: 'Weekly Words',
     navText:'logout',
-    showNav: true,
+    showNav: false,
     page: 'login',
     review: {
         deckIndex: 0, //Index of deck being reviewed
@@ -189,6 +189,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page:'cardFront',
             title:'Front',
             navText:'End',
+            showNav:true,
             review:{
                 shuffledCardIndices: shuffleDeck(state, action.index),
                 startTime: Date.now(),
@@ -206,7 +207,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         return Object.assign({}, state, {
             page: 'cardBack',
             title:'Back',
-            navText:'End'
+            navText:'End',
+            showNav:true
         });
     }
 
@@ -248,6 +250,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page: nextPage.page,
             title: nextPage.title,
             navText: nextPage.navText,
+            showNav:true,
             review: {...state.review, 
                 cardCounter: state.review.cardCounter + 1, 
                 currentCard: newCardIndex, 
@@ -272,7 +275,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         const nextPage = {
             page: 'cardFront',
             title: 'Front',
-            navText: 'End'
+            navText: 'End',
+            showNav: true
         };
 
         return Object.assign({}, state, {
@@ -293,7 +297,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         return Object.assign({}, state, {
             page: 'decks',
             title:'Decks',
-            navText: 'logout'
+            navText: 'logout',
+            showNav: true
         });
     }
 
@@ -304,6 +309,30 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         return Object.assign({}, state, {
             decks: action.decks
         });
+    }
+
+    else if (action.type === actions.HANDLE_NAV)
+    {
+        switch(action.navText.toLowerCase())
+        {
+            case 'logout': 
+                console.log('user logged out');
+                //We need to clear our authToken here
+                return Object.assign({}, state, {
+                    page: 'login',
+                    title:'Weekly Words',
+                    showNav: false,
+                    review: initialState.review
+                });
+            case 'end':
+                return Object.assign({}, state, {
+                    page: 'decks',
+                    title:'Decks',
+                    navText: 'logout',
+                    showNav: true,
+                    review: initialState.review
+                });
+        }
     }
 
     //Default
