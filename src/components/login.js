@@ -12,13 +12,15 @@ export function Login(props)
     }
 
     return (
-        <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
-            <label htmlFor="username">Username</label>
-            <Field name="username" id="username" type="text" component="input" required />
-            <label htmlFor="password">Password</label>
-            <Field name="password" id="password" type="password" component="input" required/>
-            <button type="submit">Login</button>
-        </form>
+        <div className="login-form">
+            <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
+                <label htmlFor="username">Username</label>
+                <Field name="username" id="username" type="text" component="input" required />
+                <label htmlFor="password">Password</label>
+                <Field name="password" id="password" type="password" component="input" required/>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     );
 }
 

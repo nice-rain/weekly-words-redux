@@ -1,0 +1,33 @@
+.login-form{
+    margin-top:30px;
+    padding-left:15%;
+    padding-right:15%;
+}
+
+.login-form label{
+    display:block;
+    text-align:left;
+    font-weight:bold;
+}
+
+.login-form input{
+    width:100%;
+    height:30px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:1px solid black;
+    border-radius:0.2em;
+    font-size:18px;
+}
+
+
+.login-form button{
+    background-color:dodgerblue;
+    border:1px solid darkblue;
+    width:100%;
+    margin-top:20px;
+}
+
+.login-form button:hover{
+    background-color:rgb(82, 169, 255);
+}

@@ -237,11 +237,13 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             nextPage.page = 'results';
             nextPage.title = 'Results';
             nextPage.navText = 'Done';
+            nextPage.showNav = false;
         }
         else{
             nextPage.page = 'cardFront';
             nextPage.title = 'Front';
             nextPage.navText = 'End';
+            nextPage.showNav = true;
         }
 
         //We need to refactor this to ONLY update what's needed
@@ -250,7 +252,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page: nextPage.page,
             title: nextPage.title,
             navText: nextPage.navText,
-            showNav:true,
+            showNav:nextPage.showNav,
             review: {...state.review, 
                 cardCounter: state.review.cardCounter + 1, 
                 currentCard: newCardIndex, 
@@ -332,6 +334,10 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
                     showNav: true,
                     review: initialState.review
                 });
+            default:
+                console.log('Error: Button had no navtext');
+            break;
+
         }
     }
 
