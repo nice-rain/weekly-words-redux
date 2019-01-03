@@ -97,9 +97,10 @@ const initialState = {
     title: 'Weekly Words',
     navText:'logout',
     loginError: null,
-    deckError:true,
+    deckError:false, //This error occurs when our GET fails
     showNav: false,
     loading:false,
+    reviewError: false, //this error occurs when our PUT fails
     showHelp:true,
     page: 'login',
     review: {
@@ -344,7 +345,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         console.log(action.decks);
         return Object.assign({}, state, {
             decks: action.decks,
-            loading:false
+            loading:false,
+            deckError:false
         });
     }
 
@@ -367,26 +369,38 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         });
     }
 
+
     else if (action.type === actions.PUT_DECKS_REQUEST)
     {
         console.log('action = putDecksRequest');
         return Object.assign({}, state, {
-            loading:true
-        });
-    }
-
-    else if (action.type === actions.REGISTER_REQUEST)
-    {
-        console.log('action = registerRequest');
-        return Object.assign({}, state, {
-            loading:true
+            loading:true,
+            reviewError: false
         });
     }
 
     else if(action.type === actions.PUT_DECKS_SUCCESS)
     {
         return Object.assign({}, state, {
-            loading:false
+            loading:false,
+            reviewError:false
+        });
+    }
+
+    else if(action.type === actions.PUT_DECKS_ERROR)
+    {
+        return Object.assign({}, state, {
+            loading:false,
+            reviewError: true
+        });
+    }
+
+
+    else if (action.type === actions.REGISTER_REQUEST)
+    {
+        console.log('action = registerRequest');
+        return Object.assign({}, state, {
+            loading:true
         });
     }
 

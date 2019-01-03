@@ -55,6 +55,8 @@ export class Results extends Component
         return (this.props.currentDeck.generatedDeck.cards.length /this.props.review.cardCounter  * 100).toFixed(2);
     }
 
+    deckStats = {};
+
     componentDidMount()
     {
         const oldAccuracy = this.props.currentDeck.deckHighestAccuracy;
@@ -67,7 +69,7 @@ export class Results extends Component
         const seconds = (milliseconds /1000).toFixed(0);
         const fastestTime = seconds < oldTime || oldTime === 0 ? seconds : oldTime;
 
-        const deckStats = {
+        this.deckStats = {
             id: this.props.currentDeck.id,
             deckReviewTotal: this.props.currentDeck.deckReviewTotal + 1,
             deckHighestAccuracy: bestAccuracy,
@@ -77,19 +79,28 @@ export class Results extends Component
         };
 
         console.log('stats to submit');
-        console.log(deckStats);
+        console.log(this.deckStats);
 
         //We need to do a put request here to save our stats
-        this.props.dispatch(putDeckStats(deckStats));
+        this.props.dispatch(putDeckStats(this.deckStats));
     }
 
 render(){
+
+//reverse the map so that we can sort by the latest deck being first
+let error = (<div className="results-error">
+                <p>There was an error sending your stats to the server.</p>
+                <button className="results-error-button" onClick={()=>this.props.dispatch(putDeckStats(this.deckStats))}><i className="fas fa-redo-alt"></i></button>
+            </div>);
+
+
     return(
         <section className="results-container">
             <h2>Review Stats</h2>
             <p><strong>Total Reviews:</strong> {this.props.currentDeck.deckReviewTotal + 1}</p>
             <p><strong>Review Accuracy:</strong> {this.calculateAccuracy()+'%'}</p>
             <p><strong>Review Time:</strong> {this.calculateElapsedTime()}</p>
+            {this.props.reviewError && error}
             <div className="results-button-container">
                 <button className="results-button-again"onClick={()=>this.clickedAgain()}>Again?</button>
                 <button className="results-button-home" onClick={()=>this.clickedHome()}>Home</button>
@@ -102,7 +113,8 @@ render(){
 const mapStateToProps = state => ({
     deckIndex: state.weeklyWordsReducer.review.deckIndex,
     review: state.weeklyWordsReducer.review,
-    currentDeck: state.weeklyWordsReducer.decks[state.weeklyWordsReducer.review.deckIndex]
+    currentDeck: state.weeklyWordsReducer.decks[state.weeklyWordsReducer.review.deckIndex],
+    reviewError: state.weeklyWordsReducer.reviewError
 });
 
 export default connect(mapStateToProps)(Results);
