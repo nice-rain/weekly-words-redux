@@ -348,10 +348,27 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         });
     }
 
+    else if (action.type === actions.REGISTER_REQUEST)
+    {
+        console.log('action = registerRequest');
+        return Object.assign({}, state, {
+            loading:true
+        });
+    }
+
     else if(action.type === actions.PUT_DECKS_SUCCESS)
     {
         return Object.assign({}, state, {
             loading:false
+        });
+    }
+
+    else if(action.type === actions.REGISTER_SUCCESS)
+    {
+        return Object.assign({}, state, {
+            loading:false,
+            page:'register-success',
+            title:'Registration Success'
         });
     }
 
@@ -381,6 +398,24 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             break;
 
         }
+    }
+
+    else if (action.type === actions.GO_REGISTER)
+    {
+        return Object.assign({}, state, {
+            page:'register',
+            title:'Register',
+            showNav:false
+        });
+    }
+
+    else if (action.type === actions.GO_LOGIN)
+    {
+        return Object.assign({}, state, {
+            page:'login',
+            title:'Weekly Words',
+            showNav: false
+        });
     }
 
     //Default

@@ -37,10 +37,20 @@
     border:1px solid darkgreen;
 }
 
+.cardback-button-right:hover{
+    background-color:rgb(28, 184, 74);
+}
+
+
 .cardback-button-wrong
 {
     background-color:rgb(255, 30, 30);
     border:1px solid darkred;
+}
+
+.cardback-button-wrong:hover{
+    background-color:rgb(252, 61, 61);;
+
 }
 
 .cardback-button-container

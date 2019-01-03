@@ -39,6 +39,14 @@ export const wrongAnswer = ()=> ({type: WRONG_ANSWER});
 export const RETURN_HOME = 'RETURN_HOME';
 export const returnHome = ()=>({type: RETURN_HOME});
 
+//Called from login page to change us to registration
+export const GO_REGISTER = 'GO_REGISTER';
+export const goRegister = () =>({type: GO_REGISTER});
+
+//Called from login page to change us to registration
+export const GO_LOGIN = 'GO_LOGIN';
+export const goLogin = () =>({type: GO_LOGIN});
+
 //=======================================================
 // REQUEST, SUCCESS, FAIL for REST API
 //=======================================================
@@ -51,6 +59,16 @@ export const loginSuccess = () => ({type: LOGIN_SUCCESS});
 
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const loginError = (err) => ({type: LOGIN_ERROR, err});
+
+
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const registerRequest = () => ({type: REGISTER_REQUEST});
+
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const registerSuccess = () => ({type: REGISTER_SUCCESS});
+
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const registerError = (err) => ({type: REGISTER_ERROR, err});
 
 
 export const GET_DECKS_REQUEST = 'GET_DECKS_REQUEST';
@@ -113,6 +131,48 @@ export const doLogin = (values) => dispatch => {
         console.log(err);
         //Throw an error
         dispatch(loginError(err));
+    });
+
+
+    //End of loading timeout
+    //}, 1000);
+
+};
+
+//Register a new user
+export const doRegister = (values) => dispatch => {
+    console.log('register fired');
+    console.log(values);
+
+    //Show our loading for our login
+    dispatch(registerRequest());
+
+    //Set Timeout to test loading
+    //setTimeout(() => {
+
+    //Send our AJAX request
+    fetch(`${BASE_API_URL}/users`, {
+            "headers":{
+                "content-type":"application/json"
+            },
+            "body":JSON.stringify(values),
+            "method":"POST"
+        }).then(res => {
+        if (!res.ok) {
+            console.log(res);
+            return Promise.reject(res);
+        }
+        return res.json();
+    }).then(res => {
+        console.log('Registration success');
+
+        //Notifies our application to switch to Decks page.
+        dispatch(registerSuccess());
+
+    }).catch(err => {
+        console.log(err);
+        //Throw an error
+        dispatch(registerError(err));
     });
 
 

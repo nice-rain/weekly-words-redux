@@ -16,3 +16,7 @@
     background-color:dodgerblue;
     border:1px solid darkblue;
 }
+
+.cardfront-button-flip:hover{
+    background-color:rgb(82, 169, 255);
+}

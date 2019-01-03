@@ -12,6 +12,8 @@ import CardBack from './cardBack';
 import Results from './results';
 import Login from './login';
 import Loading from './loading';
+import Register from './register';
+import RegisterSuccess from './registerSuccess';
 
 //We use the page prop in order to change the content.
 //This will not work with the back button, but we are
@@ -26,6 +28,8 @@ export function MainContent(props)
             {props.page === 'cardBack' && <CardBack />}
             {props.page === 'results' && <Results />}
             {props.page === 'login' && <Login/>}
+            {props.page === 'register' && <Register/>}
+            {props.page === 'register-success' && <RegisterSuccess/>}
         </main>
     );
 };

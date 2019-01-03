@@ -2,7 +2,7 @@
 import React from 'react';
 import './login.css';
 import {reduxForm, Field} from 'redux-form';
-import {doLogin} from '../actions';
+import {doLogin, goRegister} from '../actions';
 
 export function Login(props)
 {
@@ -13,7 +13,7 @@ export function Login(props)
 
     function handleClick()
     {
-        console.log('clicked register');
+        props.dispatch(goRegister());
     }
 
     return (

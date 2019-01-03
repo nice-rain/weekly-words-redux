@@ -28,8 +28,12 @@ h1{
     border: 1px solid black;
     border-radius:0.2em;
     font-size:1em;
+    background-color:white;
 }
 
+.nav-button:hover{
+    background-color:lightgrey;
+}
 
 /*=======================================================
 // Desktop Style

@@ -27,10 +27,18 @@
     border:1px solid darkblue;
 }
 
+.results-button-again:hover{
+    background-color:rgb(82, 169, 255);
+}
+
 .results-button-home
 {
     background-color:rgb(24, 175, 31);
     border:1px solid darkgreen;
+}
+
+.results-button-home:hover{
+    background-color:rgb(13, 151, 54);
 }
 
 .results-button-container
