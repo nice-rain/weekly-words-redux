@@ -97,6 +97,7 @@ const initialState = {
     title: 'Weekly Words',
     navText:'logout',
     loginError: null,
+    deckError:true,
     showNav: false,
     loading:false,
     showHelp:true,
@@ -312,6 +313,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     {
         console.log('action = loginRequest');
         return Object.assign({}, state, {
+            decks:null,
             loading:true,
             loginError:null
         });
@@ -346,11 +348,22 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         });
     }
 
+    else if (action.type === actions.GET_DECKS_ERROR)
+    {
+        console.log('action=getDecksError');
+        console.log(action.decks);
+        return Object.assign({}, state, {
+            loading:false,
+            deckError:true
+        });
+    }
+
     else if(action.type === actions.GET_DECKS_REQUEST)
     {
         console.log('action = getDecksRequest');
         return Object.assign({}, state, {
-            loading:true
+            loading:true,
+            deckError:false
         });
     }
 
