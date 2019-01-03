@@ -166,20 +166,21 @@ export const doRegister = (values) => dispatch => {
             "body":JSON.stringify(values),
             "method":"POST"
         }).then(res => {
-        if (!res.ok) {
-            console.log(res);
-            return Promise.reject(res);
-        }
+        // if (!res.ok) {
+        //     return Promise.reject(res.json());
+        // }
         return res.json();
     }).then(res => {
-        console.log('Registration success');
 
+        if(res.code)
+        {
+            return Promise.reject(res);  
+        }
+        console.log('Registration success');
         //Notifies our application to switch to Decks page.
         dispatch(registerSuccess());
 
     }).catch(err => {
-        console.log(err);
-        //Throw an error
         dispatch(registerError(err));
     });
 

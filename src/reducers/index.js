@@ -98,6 +98,7 @@ const initialState = {
     navText:'logout',
     loginError: null,
     deckError:false, //This error occurs when our GET fails
+    registerError:null,
     showNav: false,
     loading:false,
     reviewError: false, //this error occurs when our PUT fails
@@ -400,7 +401,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     {
         console.log('action = registerRequest');
         return Object.assign({}, state, {
-            loading:true
+            loading:true,
+            registerError:null
         });
     }
 
@@ -409,7 +411,16 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         return Object.assign({}, state, {
             loading:false,
             page:'register-success',
-            title:'Registration Success'
+            title:'Registration Success',
+            registerError:null
+        });
+    }
+
+    else if(action.type === actions.REGISTER_ERROR)
+    {
+        return Object.assign({}, state, {
+            registerError: action.err.message,
+            loading:false,
         });
     }
 

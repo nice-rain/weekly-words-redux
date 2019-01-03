@@ -1,6 +1,7 @@
 import React from 'react';
 import './register.css';
 import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
 import {doRegister, goLogin} from '../actions';
 import {passwordsMustMatch} from '../formValidation';
 
@@ -33,9 +34,12 @@ export function Register(props)
         </div>
       )
 
+    const error = (<span>Registration Error: {props.registerError}</span>);
+
     return(
         
         <div className="register-form">
+            {props.registerError && error}
             <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
                 <label htmlFor="username">Username</label>
                 <Field name="username" id="username" type="text" component="input" required />
@@ -52,6 +56,12 @@ export function Register(props)
     );
 }
 
+const mapStateToProps = state => ({
+    registerError: state.weeklyWordsReducer.registerError,
+});
+
+const connection = connect(mapStateToProps)(Register);
+
 export default reduxForm({
     form: 'register'
-})(Register);
+})(connection);
