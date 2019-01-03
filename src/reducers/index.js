@@ -96,6 +96,7 @@ const initialState = {
     }],
     title: 'Weekly Words',
     navText:'logout',
+    loginError: null,
     showNav: false,
     loading:false,
     showHelp:true,
@@ -311,15 +312,27 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     {
         console.log('action = loginRequest');
         return Object.assign({}, state, {
-            loading:true
+            loading:true,
+            loginError:null
         });
     }
 
     else if(action.type === actions.LOGIN_ERROR)
     {
-        console.log('action = loginRequest');
+        let errorStatus;
+        if(action.err.status === 401)
+        {
+            errorStatus = "The username or password is incorrect.";
+        }
+        else{
+            errorStatus = "Something went wrong. Please try again.";
+        }
+
+
+        console.log('action = loginError');
         return Object.assign({}, state, {
-            loading:false
+            loading:false,
+            loginError: errorStatus
         });
     }
 

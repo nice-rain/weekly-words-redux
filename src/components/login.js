@@ -2,6 +2,7 @@
 import React from 'react';
 import './login.css';
 import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
 import {doLogin, goRegister} from '../actions';
 
 export function Login(props)
@@ -16,8 +17,11 @@ export function Login(props)
         props.dispatch(goRegister());
     }
 
+    const errorField = (<span><p>{props.loginError}</p></span>);
+
     return (
         <div className="login-form">
+            {props.loginError && errorField}
             <form onSubmit={props.handleSubmit(values => onSubmit(values))}>
                 <label htmlFor="username">Username</label>
                 <Field name="username" id="username" type="text" component="input" required />
@@ -30,6 +34,12 @@ export function Login(props)
     );
 }
 
+const mapStateToProps = state => ({
+    loginError: state.weeklyWordsReducer.loginError,
+});
+
+const connection = connect(mapStateToProps)(Login);
+
 export default reduxForm({
     form: 'login'
-})(Login);
+})(connection);

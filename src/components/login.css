@@ -34,3 +34,7 @@
 .login-button:hover{
     background-color:rgb(82, 169, 255);
 }
+
+.login-form span{
+    color:red;
+}
