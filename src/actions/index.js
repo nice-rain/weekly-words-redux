@@ -47,6 +47,14 @@ export const goRegister = () =>({type: GO_REGISTER});
 export const GO_LOGIN = 'GO_LOGIN';
 export const goLogin = () =>({type: GO_LOGIN});
 
+//Shows help screen
+export const DISPLAY_HELP = 'DISPLAY_HELP';
+export const displayHelp = () =>({type: DISPLAY_HELP});
+
+//Hides help screen
+export const HIDE_HELP = 'HIDE_HELP';
+export const hideHelp = () =>({type: HIDE_HELP});
+
 //=======================================================
 // REQUEST, SUCCESS, FAIL for REST API
 //=======================================================

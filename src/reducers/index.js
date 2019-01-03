@@ -98,6 +98,7 @@ const initialState = {
     navText:'logout',
     showNav: false,
     loading:false,
+    showHelp:true,
     page: 'login',
     review: {
         deckIndex: 0, //Index of deck being reviewed
@@ -415,6 +416,20 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
             page:'login',
             title:'Weekly Words',
             showNav: false
+        });
+    }
+
+    else if (action.type === actions.DISPLAY_HELP)
+    {
+        return Object.assign({}, state, {
+            showHelp: true
+        });
+    }
+
+    else if (action.type === actions.HIDE_HELP)
+    {
+        return Object.assign({}, state, {
+            showHelp: false
         });
     }
 

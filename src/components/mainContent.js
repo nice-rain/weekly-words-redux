@@ -14,6 +14,7 @@ import Login from './login';
 import Loading from './loading';
 import Register from './register';
 import RegisterSuccess from './registerSuccess';
+import Info from "./info";
 
 //We use the page prop in order to change the content.
 //This will not work with the back button, but we are
@@ -23,6 +24,7 @@ export function MainContent(props)
     return(
         <main role="main">
             {props.loading && <Loading/>}
+            {props.showHelp && <Info/>}
             {props.page === 'decks' && <DeckList />}
             {props.page === 'cardFront' && <CardFront />}
             {props.page === 'cardBack' && <CardBack />}
@@ -36,7 +38,8 @@ export function MainContent(props)
 
 const mapStateToProps = state => ({
     page: state.weeklyWordsReducer.page,
-    loading: state.weeklyWordsReducer.loading
+    loading: state.weeklyWordsReducer.loading,
+    showHelp: state.weeklyWordsReducer.showHelp
 });
 
 export default connect(mapStateToProps)(MainContent);

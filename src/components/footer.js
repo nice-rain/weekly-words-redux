@@ -4,11 +4,21 @@
 import React from 'react';
 import './footer.css';
 
-export default function Footer(props)
+import {connect} from 'react-redux';
+
+import {displayHelp} from '../actions';
+
+export  function Footer(props)
 {
+    function handleClick()
+    {
+        props.dispatch(displayHelp());
+    }
+
     return(
         <footer role="contentinfo">
-            {props.text}
+            {/* {props.text} */}
+            <button className="link-button" onClick={()=>handleClick()}>Need Help?</button>
         </footer>
     );
 };
@@ -17,3 +27,5 @@ Footer.defaultProps =
 {
     text: "Need Help?"
 };
+
+export default connect()(Footer);

@@ -1,0 +1,31 @@
+.info
+{
+    background-color:rgba(255, 255, 255, 0.9);
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    z-index:3;
+
+    width:100%;
+}
+
+.info-container
+{
+    padding-left:20px;
+    padding-right:20px;
+    text-align:center;
+}
+
+.info-container p{
+    text-align:left;
+}
+
+.info-container button{
+    margin-top:30px;
+    border:1px solid black;
+}
+
+.info-container button:hover{
+    background-color:#eee;
+}
