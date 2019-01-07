@@ -103,16 +103,11 @@ export const putDecksError = (err) => ({type: PUT_DECKS_ERROR, err});
 //=======================================================
 export const doLogin = (values) => dispatch => {
     console.log('login fired');
-    console.log(values);
-
     //Show our loading for our login
     dispatch(loginRequest());
 
-    //Set Timeout to test loading
-    //setTimeout(() => {
-
     //Send our AJAX request
-    fetch(`${BASE_API_URL}/auth/login`, {
+    return fetch(`${BASE_API_URL}/auth/login`, {
             "headers":{
                 "content-type":"application/json"
             },
@@ -120,7 +115,6 @@ export const doLogin = (values) => dispatch => {
             "method":"POST"
         }).then(res => {
         if (!res.ok) {
-            console.log(res);
             return Promise.reject(res);
         }
         return res.json();
@@ -130,7 +124,9 @@ export const doLogin = (values) => dispatch => {
         //Store it in sessionstorage (for now). No need to load persistence.
         try {
             sessionStorage.setItem('authToken', res.authToken);
-        } catch (e) {}
+        } catch (e) {
+            console.log('unable to set auth token');
+        }
 
         //Notifies our application to switch to Decks page.
         dispatch(loginSuccess());
@@ -140,11 +136,6 @@ export const doLogin = (values) => dispatch => {
         //Throw an error
         dispatch(loginError(err));
     });
-
-
-    //End of loading timeout
-    //}, 1000);
-
 };
 
 //Register a new user
@@ -159,7 +150,7 @@ export const doRegister = (values) => dispatch => {
     //setTimeout(() => {
 
     //Send our AJAX request
-    fetch(`${BASE_API_URL}/users`, {
+    return fetch(`${BASE_API_URL}/users`, {
             "headers":{
                 "content-type":"application/json"
             },
@@ -194,7 +185,7 @@ export const doRegister = (values) => dispatch => {
 export const getDecks = () => dispatch => {
     dispatch(getDecksRequest());
 
-    fetch(`${BASE_API_URL}/decks/`,
+    return fetch(`${BASE_API_URL}/decks/`,
     {
         'headers':{
             'content-type':'application/json',
@@ -204,7 +195,6 @@ export const getDecks = () => dispatch => {
     })
     .then(res => {
         if (!res.ok) {
-            console.log(res);
             return Promise.reject(res);
         }
         return res.json();
@@ -234,7 +224,7 @@ export const putDeckStats = (stats) => dispatch =>
     const request = JSON.stringify(stats);
     console.log(request);
 
-    fetch(`${BASE_API_URL}/decks/${stats.id}`,
+    return fetch(`${BASE_API_URL}/decks/${stats.id}`,
     {
         'headers':{
             'content-type':'application/json',

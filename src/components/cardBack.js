@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {rightAnswer, wrongAnswer} from '../actions';
 
 
-export function cardBack(props)
+export function CardBack(props)
 {
     //Store our current card
     const currentCard = props.currentDeck.generatedDeck.cards[props.review.shuffledCardIndices[props.review.currentCard]];
@@ -37,7 +37,7 @@ export function cardBack(props)
     );
 }
 
-cardBack.defaultProps = {
+CardBack.defaultProps = {
     word:'example',
     results: [
         {
@@ -58,4 +58,4 @@ const mapStateToProps = state => ({
     currentDeck: state.weeklyWordsReducer.decks[state.weeklyWordsReducer.review.deckIndex]
 });
 
-export default connect(mapStateToProps)(cardBack);
+export default connect(mapStateToProps)(CardBack);
