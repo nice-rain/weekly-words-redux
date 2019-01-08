@@ -168,7 +168,7 @@ describe('weeklyWordsReducer', () => {
         expect(state).toEqual({
             decks: [],
             title: 'Weekly Words',
-            navText:'logout',
+            navText:null,
             loginError: null,
             deckError:false, //This error occurs when our GET fails
             registerError:null,
