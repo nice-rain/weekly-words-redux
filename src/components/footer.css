@@ -6,3 +6,7 @@ footer{
     height:8%;
     padding-top:4%;
 }
+
+footer .link-button{
+    color:lime;
+}
