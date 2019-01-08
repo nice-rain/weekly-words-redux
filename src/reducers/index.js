@@ -382,14 +382,16 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     else if (action.type === actions.DISPLAY_HELP)
     {
         return Object.assign({}, state, {
-            showHelp: true
+            showHelp: true,
+            showNav: false
         });
     }
 
     else if (action.type === actions.HIDE_HELP)
     {
         return Object.assign({}, state, {
-            showHelp: false
+            showHelp: false,
+            showNav: true
         });
     }
 

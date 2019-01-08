@@ -17,6 +17,8 @@ import {
     PUT_DECKS_SUCCESS
 } from './index';
 
+const {API_BASE_URL} = require('../config');
+
 describe('getDecksSuccess', () => {
     it('Should return the action', () => {
         const decks = [{
@@ -46,7 +48,7 @@ describe('getDecks', () => {
 
         const dispatch = jest.fn();
         return getDecks()(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/decks/`,
+            expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/decks/`,
             {
                 'headers':{
                     'content-type':'application/json',
@@ -84,7 +86,7 @@ describe('doLogin', () => {
 
         const dispatch = jest.fn();
         return doLogin()(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/auth/login`,
+            expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/auth/login`,
             {
                 "headers":{
                     "content-type":"application/json"
@@ -127,7 +129,7 @@ describe('doRegister', () => {
 
         const dispatch = jest.fn();
         return doRegister(values)(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/users`,
+            expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/users`,
             {
                 "headers":{
                     "content-type":"application/json"
@@ -172,7 +174,7 @@ describe('putDeckStats', () => {
 
         const dispatch = jest.fn();
         return putDeckStats(stats)(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/decks/1`,
+            expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/decks/1`,
             {
                 "headers":{
                     "content-type":"application/json",

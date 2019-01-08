@@ -26,11 +26,11 @@ export function Deck(props)
             {props.displayInfo && <div className="deck-stats">
                 <ul>
                     <li><strong>Review Total:</strong> {props.deckReviewTotal}</li>
-                    <li><strong>Latest Accuracy:</strong> {props.deckLatestAccuracy}</li>
-                    <li><strong>Latest Review Time:</strong> {props.deckLatestTime}</li>
+                    <li><strong>Latest Accuracy:</strong> {props.deckLatestAccuracy}%</li>
+                    <li><strong>Latest Review Time:</strong> {props.deckLatestTime}s</li>
                     <br />
-                    <li><strong>Highest Accuracy:</strong> {props.deckHighestAccuracy}</li>
-                    <li><strong>Fastest Review Time:</strong> {props.deckFastestTime}</li>
+                    <li><strong>Highest Accuracy:</strong> {props.deckHighestAccuracy}%</li>
+                    <li><strong>Fastest Review Time:</strong> {props.deckFastestTime}s</li>
                 </ul>
                 <button className="deck-button-start" onClick={()=>beginReview()}>Start Review</button> 
             </div>}

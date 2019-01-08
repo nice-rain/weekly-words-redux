@@ -1,5 +1,7 @@
 //Our base API URL
-const BASE_API_URL = 'https://fullstack-dev.pro/ww/api'
+//const BASE_API_URL = 'https://fullstack-dev.pro/ww/api'
+
+const {API_BASE_URL} = require('../config');
 
 //Called when we click on a deck button
 export const SHOW_HIDE_DECK_INFO = 'SHOW_HIDE_DECK_INFO';
@@ -107,7 +109,7 @@ export const doLogin = (values) => dispatch => {
     dispatch(loginRequest());
 
     //Send our AJAX request
-    return fetch(`${BASE_API_URL}/auth/login`, {
+    return fetch(`${API_BASE_URL}/auth/login`, {
             "headers":{
                 "content-type":"application/json"
             },
@@ -150,7 +152,7 @@ export const doRegister = (values) => dispatch => {
     //setTimeout(() => {
 
     //Send our AJAX request
-    return fetch(`${BASE_API_URL}/users`, {
+    return fetch(`${API_BASE_URL}/users`, {
             "headers":{
                 "content-type":"application/json"
             },
@@ -185,7 +187,7 @@ export const doRegister = (values) => dispatch => {
 export const getDecks = () => dispatch => {
     dispatch(getDecksRequest());
 
-    return fetch(`${BASE_API_URL}/decks/`,
+    return fetch(`${API_BASE_URL}/decks/`,
     {
         'headers':{
             'content-type':'application/json',
@@ -224,7 +226,7 @@ export const putDeckStats = (stats) => dispatch =>
     const request = JSON.stringify(stats);
     console.log(request);
 
-    return fetch(`${BASE_API_URL}/decks/${stats.id}`,
+    return fetch(`${API_BASE_URL}/decks/${stats.id}`,
     {
         'headers':{
             'content-type':'application/json',
