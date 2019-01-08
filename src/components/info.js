@@ -14,6 +14,7 @@ export function Info(props)
     return (
         <section className="info">
             <div className="info-container">
+            <h2>Help</h2>
                 <p><strong>Purpose: </strong>Weekly Words is an app designed to help you learn 20 new words or phrases a week. 
                 The server will fetch and generate a deck of 20 cards a week to review. </p>
                 <p>Your review stats for each deck are stored to help you monitor your progress.</p>
