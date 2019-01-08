@@ -15,7 +15,7 @@ export function Header(props)
     return (
         <header className="App-header" role="banner">
           <h1>{props.title}</h1>
-          {props.showNav && <button className="nav-button" onClick={()=>handleClick()}>{props.navText}</button>}
+          {props.showNav && props.navText && <button className="nav-button" onClick={()=>handleClick()}>{props.navText}</button>}
         </header>
     );
 };

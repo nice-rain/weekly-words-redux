@@ -4,7 +4,7 @@ import * as actions from '../actions';
 const initialState = {
     decks: [],
     title: 'Weekly Words',
-    navText:'logout',
+    navText:null,
     loginError: null,
     deckError:false, //This error occurs when our GET fails
     registerError:null,
