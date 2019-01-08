@@ -46,7 +46,7 @@ describe('getDecks', () => {
 
         const dispatch = jest.fn();
         return getDecks()(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`http://localhost:8080/api/decks/`,
+            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/decks/`,
             {
                 'headers':{
                     'content-type':'application/json',
@@ -84,7 +84,7 @@ describe('doLogin', () => {
 
         const dispatch = jest.fn();
         return doLogin()(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`http://localhost:8080/api/auth/login`,
+            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/auth/login`,
             {
                 "headers":{
                     "content-type":"application/json"
@@ -127,7 +127,7 @@ describe('doRegister', () => {
 
         const dispatch = jest.fn();
         return doRegister(values)(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`http://localhost:8080/api/users`,
+            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/users`,
             {
                 "headers":{
                     "content-type":"application/json"
@@ -172,7 +172,7 @@ describe('putDeckStats', () => {
 
         const dispatch = jest.fn();
         return putDeckStats(stats)(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith(`http://localhost:8080/api/decks/1`,
+            expect(fetch).toHaveBeenCalledWith(`https://fullstack-dev.pro/ww/api/decks/1`,
             {
                 "headers":{
                     "content-type":"application/json",

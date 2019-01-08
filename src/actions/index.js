@@ -1,5 +1,5 @@
 //Our base API URL
-const BASE_API_URL = 'http://localhost:8080/api'
+const BASE_API_URL = 'https://fullstack-dev.pro/ww/api'
 
 //Called when we click on a deck button
 export const SHOW_HIDE_DECK_INFO = 'SHOW_HIDE_DECK_INFO';
