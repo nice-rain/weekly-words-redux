@@ -59,7 +59,7 @@ Note: You will need to have setup and installed the node.js back-end in order to
 ## Demo
 https://weekly-words.herokuapp.com
 
-Note: Login with the following:
+Login with the following:
 
-username: Thinkful
+username: Thinkful<br>
 password: p123456789
