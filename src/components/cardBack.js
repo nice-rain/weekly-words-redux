@@ -30,8 +30,8 @@ export function CardBack(props)
                 <p className ="cardback-usage">{currentCard.usage}</p>
             </div>
             <div className="cardback-button-container">
-                <button className="cardback-button-right" onClick={()=>clickedRight()}>Check</button>
-                <button className="cardback-button-wrong" onClick={()=>clickedWrong()}>X</button>
+                <button className="cardback-button-right" onClick={()=>clickedRight()}><i class="fas fa-check"></i></button>
+                <button className="cardback-button-wrong" onClick={()=>clickedWrong()}><i class="fas fa-times"></i></button>
             </div>
         </section>
     );
