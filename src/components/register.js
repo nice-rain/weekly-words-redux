@@ -8,7 +8,7 @@ import {passwordsMustMatch} from '../formValidation';
 export function Register(props)
 {
     function onSubmit(values) {
-        console.log('registered');
+        //console.log('registered');
         props.dispatch(doRegister(values));
     }
 

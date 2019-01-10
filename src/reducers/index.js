@@ -31,7 +31,7 @@ const initialState = {
 function randRange(min, max)
 {
     //console.log(`Minimum is: ${min}`);
-    console.log(`Maximum is ${max}`)
+    //console.log(`Maximum is ${max}`)
 
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -53,7 +53,7 @@ function shuffleDeck(state, deckIndex)
     const shuffledIndices = [];
 
     //Log our temporary indices (before shuffling)
-    console.log(tempIndices);
+    //console.log(tempIndices);
 
     //loop through each card index
     for (let i = 0; i < numCards; i++)
@@ -70,11 +70,11 @@ function shuffleDeck(state, deckIndex)
         tempIndices.splice(randomIndex, 1);
 
         //log after splice
-        console.log(tempIndices);
+        //console.log(tempIndices);
     }
 
     //Log our shuffled indices
-    console.log(shuffledIndices);
+    //console.log(shuffledIndices);
 
     //Return our shuffled indices to our reducer
     return shuffledIndices;
@@ -84,7 +84,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     if(action.type === actions.SHOW_HIDE_DECK_INFO)
     {
-        console.log('action = ShowHideDeck');
+        //console.log('action = ShowHideDeck');
 
         //Map our deck array, if the index matches, modify it
         const decks = state.decks.map((deck, index) =>{
@@ -99,7 +99,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if(action.type === actions.START_REVIEW)
     {
-        console.log('action = startReview');
+        //console.log('action = startReview');
         return Object.assign({}, state, {
             page:'cardFront',
             title:'Front',
@@ -118,7 +118,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if(action.type === actions.FLIP_CARD)
     {
-        console.log('action = flipCard');
+        //console.log('action = flipCard');
         return Object.assign({}, state, {
             page: 'cardBack',
             title:'Back',
@@ -129,7 +129,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if(action.type === actions.RIGHT_ANSWER)
     {
-        console.log('action = rightAnswer');
+        //console.log('action = rightAnswer');
         
         //We will need to start by removing our current index from the shuffledIndices array
         const shuffledCards = [...state.review.shuffledCardIndices.slice(0, state.review.currentCard),
@@ -179,7 +179,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if (action.type === actions.WRONG_ANSWER)
     {
-        console.log('action = wrongAnswer');
+        //console.log('action = wrongAnswer');
         
         //Move our index 1
         let newCardIndex = state.review.currentCard + 1;
@@ -210,7 +210,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
     //Bring us to our decks page if we return home or login
     else if (action.type === actions.RETURN_HOME || action.type === actions.LOGIN_SUCCESS)
     {
-        console.log('action = returnHome');
+        //console.log('action = returnHome');
         return Object.assign({}, state, {
             page: 'decks',
             title:'Decks',
@@ -222,7 +222,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if(action.type === actions.LOGIN_REQUEST)
     {
-        console.log('action = loginRequest');
+        //console.log('action = loginRequest');
         return Object.assign({}, state, {
             decks:null,
             loading:true,
@@ -242,7 +242,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         }
 
 
-        console.log('action = loginError');
+        //console.log('action = loginError');
         return Object.assign({}, state, {
             loading:false,
             loginError: errorStatus
@@ -251,8 +251,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if (action.type === actions.GET_DECKS_SUCCESS)
     {
-        console.log('action=getDecksSuccess');
-        console.log(action.decks);
+        //console.log('action=getDecksSuccess');
+        //console.log(action.decks);
         return Object.assign({}, state, {
             decks: action.decks,
             loading:false,
@@ -262,8 +262,8 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if (action.type === actions.GET_DECKS_ERROR)
     {
-        console.log('action=getDecksError');
-        console.log(action.decks);
+        //console.log('action=getDecksError');
+        //console.log(action.decks);
         return Object.assign({}, state, {
             loading:false,
             deckError:true
@@ -272,7 +272,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if(action.type === actions.GET_DECKS_REQUEST)
     {
-        console.log('action = getDecksRequest');
+        //console.log('action = getDecksRequest');
         return Object.assign({}, state, {
             loading:true,
             deckError:false
@@ -282,7 +282,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if (action.type === actions.PUT_DECKS_REQUEST)
     {
-        console.log('action = putDecksRequest');
+        //console.log('action = putDecksRequest');
         return Object.assign({}, state, {
             loading:true,
             reviewError: false
@@ -308,7 +308,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
 
     else if (action.type === actions.REGISTER_REQUEST)
     {
-        console.log('action = registerRequest');
+        //console.log('action = registerRequest');
         return Object.assign({}, state, {
             loading:true,
             registerError:null
@@ -338,7 +338,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
         switch(action.navText.toLowerCase())
         {
             case 'logout': 
-                console.log('user logged out');
+                //console.log('user logged out');
                 //We need to clear our authToken here
                 return Object.assign({}, state, {
                     page: 'login',
@@ -355,7 +355,7 @@ export const weeklyWordsReducer = (state = initialState, action) =>{
                     review: initialState.review
                 });
             default:
-                console.log('Error: Button had no navtext');
+                //console.log('Error: Button had no navtext');
             break;
 
         }

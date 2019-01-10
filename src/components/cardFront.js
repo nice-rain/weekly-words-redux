@@ -10,7 +10,7 @@ export function cardFront(props)
     //Callback for onClick event
     function flip()
     {
-        console.log('flip card called');
+        //console.log('flip card called');
         props.dispatch(flipCard(props.cardIndex));
     }
 

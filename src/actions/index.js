@@ -104,7 +104,7 @@ export const putDecksError = (err) => ({type: PUT_DECKS_ERROR, err});
 // Redux Thunk Actions
 //=======================================================
 export const doLogin = (values) => dispatch => {
-    console.log('login fired');
+    //console.log('login fired');
     //Show our loading for our login
     dispatch(loginRequest());
 
@@ -121,20 +121,20 @@ export const doLogin = (values) => dispatch => {
         }
         return res.json();
     }).then(res => {
-        console.log('Ajax success');
+        //console.log('Ajax success');
 
         //Store it in sessionstorage (for now). No need to load persistence.
         try {
             sessionStorage.setItem('authToken', res.authToken);
         } catch (e) {
-            console.log('unable to set auth token');
+            //console.log('unable to set auth token');
         }
 
         //Notifies our application to switch to Decks page.
         dispatch(loginSuccess());
 
     }).catch(err => {
-        console.log(err);
+        //console.log(err);
         //Throw an error
         dispatch(loginError(err));
     });
@@ -142,8 +142,8 @@ export const doLogin = (values) => dispatch => {
 
 //Register a new user
 export const doRegister = (values) => dispatch => {
-    console.log('register fired');
-    console.log(values);
+    //console.log('register fired');
+    //console.log(values);
 
     //Show our loading for our login
     dispatch(registerRequest());
@@ -169,7 +169,7 @@ export const doRegister = (values) => dispatch => {
         {
             return Promise.reject(res);  
         }
-        console.log('Registration success');
+        //console.log('Registration success');
         //Notifies our application to switch to Decks page.
         dispatch(registerSuccess());
 
@@ -202,7 +202,7 @@ export const getDecks = () => dispatch => {
         return res.json();
     })
     .then(res => {
-        console.log('GET Decks success');
+        //console.log('GET Decks success');
 
         const decks = res.map(deck =>{
             return {...deck, displayInfo:false};
@@ -213,7 +213,7 @@ export const getDecks = () => dispatch => {
 
     })
     .catch(err => {
-        console.log(err);
+        //console.log(err);
         //Throw an error
         dispatch(getDecksError(err));
     });
@@ -224,7 +224,7 @@ export const putDeckStats = (stats) => dispatch =>
     dispatch(putDecksRequest());
 
     const request = JSON.stringify(stats);
-    console.log(request);
+    //console.log(request);
 
     return fetch(`${API_BASE_URL}/decks/${stats.id}`,
     {
@@ -237,19 +237,19 @@ export const putDeckStats = (stats) => dispatch =>
     })
     .then(res => {
         if (!res.ok) {
-            console.log(res);
+            //console.log(res);
             return Promise.reject(res);
         }
         return res;
     })
     .then(res => {
-        console.log('PUT Decks success');
+        //console.log('PUT Decks success');
         //Notifies our application to switch to Decks page.
         dispatch(putDecksSuccess());
 
     })
     .catch(err => {
-        console.log(err);
+        //console.log(err);
         //Throw an error
         dispatch(putDecksError(err));
     });
