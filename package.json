@@ -1,5 +1,6 @@
 {
   "name": "weekly-words-redux",
+  "homepage": "https://fullstack-dev.pro/weekly-words",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
